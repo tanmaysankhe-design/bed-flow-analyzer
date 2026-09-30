@@ -81,7 +81,7 @@ export function clusterCounts(rows: ResultRow[] = results) {
 
 export function toCsv(rows: Record<string, unknown>[]) {
   if (!rows.length) return "";
-  const header = Object.keys(rows[0]);
+  const header = Object.keys(rows[0] as Record<string, unknown>);
   const lines = rows.map((r) => header.map((h) => String(r[h] ?? "")).join(","));
   return [header.join(","), ...lines].join("\n");
 }

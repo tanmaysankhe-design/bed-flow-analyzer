@@ -49,7 +49,7 @@ function Dashboard() {
   const depts = byDepartment();
   const monthly = byMonth();
   const counts = clusterCounts();
-  const predictedTotal = Math.round(monthly[monthly.length - 1].predicted);
+  const predictedTotal = Math.round(monthly[monthly.length - 1]?.predicted ?? 0);
 
   return (
     <PageShell

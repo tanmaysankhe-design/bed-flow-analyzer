@@ -93,7 +93,7 @@ function Analysis() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={counts}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                  <XAxis dataKey="cluster" tick={axis} tickFormatter={(v: string) => v.split(" ")[0]} />
+                  <XAxis dataKey="cluster" tick={axis} tickFormatter={(v: string) => String(v).split(" ")[0] ?? v} />
                   <YAxis tick={axis} />
                   <Tooltip contentStyle={tooltipStyle} />
                   <Bar dataKey="count" radius={[6, 6, 0, 0]}>
