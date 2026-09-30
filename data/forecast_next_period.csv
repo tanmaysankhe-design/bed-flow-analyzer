@@ -1,0 +1,6 @@
+department,last_month,last_occupied_beds,total_beds,predicted_next_occupied_beds
+Emergency,2024-12,70,80,69.8
+General Medicine,2024-12,104,120,100.6
+ICU,2024-12,40,40,41.4
+Pediatrics,2024-12,43,60,40.2
+Surgery,2024-12,54,70,54.3

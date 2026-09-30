@@ -1,0 +1,16 @@
+{
+  "kmeans_inertia": 231.04,
+  "regression": {
+    "mae": 3.64,
+    "r2": 0.952,
+    "intercept": -0.512,
+    "coefficients": {
+      "admissions": -0.0049,
+      "avg_length_of_stay": -1.1392,
+      "staff_on_duty": 0.5453,
+      "prev_occupied_beds": 0.7356
+    },
+    "train_rows": 150,
+    "test_rows": 30
+  }
+}
