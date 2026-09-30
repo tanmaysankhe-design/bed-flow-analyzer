@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BdaAnalysisRouteImport } from './routes/bda-analysis'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DataExplorerRouteImport } from './routes/data-explorer'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const BdaAnalysisRoute = BdaAnalysisRouteImport.update({
   path: '/bda-analysis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataExplorerRoute = DataExplorerRouteImport.update({
   id: '/data-explorer',
   path: '/data-explorer',
@@ -32,30 +38,34 @@ const DataExplorerRoute = DataExplorerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bda-analysis': typeof BdaAnalysisRoute
+  '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bda-analysis': typeof BdaAnalysisRoute
+  '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bda-analysis': typeof BdaAnalysisRoute
+  '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bda-analysis' | '/data-explorer'
+  fullPaths: '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bda-analysis' | '/data-explorer'
-  id: '__root__' | '/' | '/bda-analysis' | '/data-explorer'
+  to: '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
+  id: '__root__' | '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BdaAnalysisRoute: typeof BdaAnalysisRoute
+  DashboardRoute: typeof DashboardRoute
   DataExplorerRoute: typeof DataExplorerRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BdaAnalysisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data-explorer': {
       id: '/data-explorer'
       path: '/data-explorer'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BdaAnalysisRoute: BdaAnalysisRoute,
+  DashboardRoute: DashboardRoute,
   DataExplorerRoute: DataExplorerRoute,
 }
 export const routeTree = rootRouteImport
