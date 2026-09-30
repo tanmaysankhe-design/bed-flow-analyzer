@@ -14,6 +14,7 @@ import { Route as BdaAnalysisRouteImport } from './routes/bda-analysis'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DataExplorerRouteImport } from './routes/data-explorer'
 import { Route as PowerBiGuideRouteImport } from './routes/power-bi-guide'
+import { Route as RunProjectRouteImport } from './routes/run-project'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const PowerBiGuideRoute = PowerBiGuideRouteImport.update({
   path: '/power-bi-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RunProjectRoute = RunProjectRouteImport.update({
+  id: '/run-project',
+  path: '/run-project',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
   '/power-bi-guide': typeof PowerBiGuideRoute
+  '/run-project': typeof RunProjectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
   '/power-bi-guide': typeof PowerBiGuideRoute
+  '/run-project': typeof RunProjectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,14 +70,25 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
   '/power-bi-guide': typeof PowerBiGuideRoute
+  '/run-project': typeof RunProjectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/bda-analysis' | '/dashboard' | '/data-explorer' | '/power-bi-guide'
+    | '/'
+    | '/bda-analysis'
+    | '/dashboard'
+    | '/data-explorer'
+    | '/power-bi-guide'
+    | '/run-project'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/bda-analysis' | '/dashboard' | '/data-explorer' | '/power-bi-guide'
+    | '/'
+    | '/bda-analysis'
+    | '/dashboard'
+    | '/data-explorer'
+    | '/power-bi-guide'
+    | '/run-project'
   id:
     | '__root__'
     | '/'
@@ -77,6 +96,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/data-explorer'
     | '/power-bi-guide'
+    | '/run-project'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -85,6 +105,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   DataExplorerRoute: typeof DataExplorerRoute
   PowerBiGuideRoute: typeof PowerBiGuideRoute
+  RunProjectRoute: typeof RunProjectRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PowerBiGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/run-project': {
+      id: '/run-project'
+      path: '/run-project'
+      fullPath: '/run-project'
+      preLoaderRoute: typeof RunProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -133,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   DataExplorerRoute: DataExplorerRoute,
   PowerBiGuideRoute: PowerBiGuideRoute,
+  RunProjectRoute: RunProjectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
