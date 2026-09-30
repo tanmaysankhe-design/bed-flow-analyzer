@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BdaAnalysisRouteImport } from './routes/bda-analysis'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DataExplorerRouteImport } from './routes/data-explorer'
+import { Route as PowerBiGuideRouteImport } from './routes/power-bi-guide'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const DataExplorerRoute = DataExplorerRouteImport.update({
   path: '/data-explorer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PowerBiGuideRoute = PowerBiGuideRouteImport.update({
+  id: '/power-bi-guide',
+  path: '/power-bi-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bda-analysis': typeof BdaAnalysisRoute
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
+  '/power-bi-guide': typeof PowerBiGuideRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bda-analysis': typeof BdaAnalysisRoute
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
+  '/power-bi-guide': typeof PowerBiGuideRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,22 @@ export interface FileRoutesById {
   '/bda-analysis': typeof BdaAnalysisRoute
   '/dashboard': typeof DashboardRoute
   '/data-explorer': typeof DataExplorerRoute
+  '/power-bi-guide': typeof PowerBiGuideRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
+  fullPaths:
+    '/' | '/bda-analysis' | '/dashboard' | '/data-explorer' | '/power-bi-guide'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
-  id: '__root__' | '/' | '/bda-analysis' | '/dashboard' | '/data-explorer'
+  to:
+    '/' | '/bda-analysis' | '/dashboard' | '/data-explorer' | '/power-bi-guide'
+  id:
+    | '__root__'
+    | '/'
+    | '/bda-analysis'
+    | '/dashboard'
+    | '/data-explorer'
+    | '/power-bi-guide'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +84,7 @@ export interface RootRouteChildren {
   BdaAnalysisRoute: typeof BdaAnalysisRoute
   DashboardRoute: typeof DashboardRoute
   DataExplorerRoute: typeof DataExplorerRoute
+  PowerBiGuideRoute: typeof PowerBiGuideRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +117,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataExplorerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/power-bi-guide': {
+      id: '/power-bi-guide'
+      path: '/power-bi-guide'
+      fullPath: '/power-bi-guide'
+      preLoaderRoute: typeof PowerBiGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +132,7 @@ const rootRouteChildren: RootRouteChildren = {
   BdaAnalysisRoute: BdaAnalysisRoute,
   DashboardRoute: DashboardRoute,
   DataExplorerRoute: DataExplorerRoute,
+  PowerBiGuideRoute: PowerBiGuideRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
