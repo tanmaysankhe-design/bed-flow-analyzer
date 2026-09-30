@@ -1,0 +1,4 @@
+utilization_cluster,records,avg_occupancy_rate,avg_admissions,avg_length_of_stay,avg_staff_utilization
+High Utilization,36,92.08,150.89,7.39,56.95
+Low Utilization,107,68.74,380.6,4.66,77.94
+Moderate Utilization,37,82.61,991.24,2.09,77.46

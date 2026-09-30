@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BdaAnalysisRouteImport } from './routes/bda-analysis'
+import { Route as DataExplorerRouteImport } from './routes/data-explorer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BdaAnalysisRoute = BdaAnalysisRouteImport.update({
+  id: '/bda-analysis',
+  path: '/bda-analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataExplorerRoute = DataExplorerRouteImport.update({
+  id: '/data-explorer',
+  path: '/data-explorer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bda-analysis': typeof BdaAnalysisRoute
+  '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bda-analysis': typeof BdaAnalysisRoute
+  '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bda-analysis': typeof BdaAnalysisRoute
+  '/data-explorer': typeof DataExplorerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/bda-analysis' | '/data-explorer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/bda-analysis' | '/data-explorer'
+  id: '__root__' | '/' | '/bda-analysis' | '/data-explorer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BdaAnalysisRoute: typeof BdaAnalysisRoute
+  DataExplorerRoute: typeof DataExplorerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bda-analysis': {
+      id: '/bda-analysis'
+      path: '/bda-analysis'
+      fullPath: '/bda-analysis'
+      preLoaderRoute: typeof BdaAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-explorer': {
+      id: '/data-explorer'
+      path: '/data-explorer'
+      fullPath: '/data-explorer'
+      preLoaderRoute: typeof DataExplorerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BdaAnalysisRoute: BdaAnalysisRoute,
+  DataExplorerRoute: DataExplorerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
